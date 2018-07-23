@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "579485764437",
+    "firebase_url": "https://test-fstm.firebaseio.com",
+    "project_id": "test-fstm",
+    "storage_bucket": "test-fstm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579485764437:android:829ba4e8808a810a",
+        "android_client_info": {
+          "package_name": "my.edu.kuis.fstm.testfireb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579485764437-7v8kn38ajba84ctoo7c4ucbsp1mofedr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtnymwL467mO6rUQfVPF4DOAgqGjcR5Is"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
