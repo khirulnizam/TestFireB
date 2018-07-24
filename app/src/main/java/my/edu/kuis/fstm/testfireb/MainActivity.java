@@ -1,3 +1,5 @@
+// full code at
+// https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/MainActivity.java
 package my.edu.kuis.fstm.testfireb;
 
 import android.net.wifi.p2p.WifiP2pManager;
@@ -6,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 //Firebase APIs import
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FIREBASEURL = "https://test-fstm.firebaseio.com/";
     // Declaring Firebase object.
     Firebase firebase;
+    DatabaseReference databaseReference;
+    public static final String Database_Path = "trainings";
 
     private Button btnsave;
     private EditText trainingid, trainingname, contact, website;
@@ -24,13 +29,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //String to store data from EditText
     private String strainingid, strainingname, scontact, swebsite;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Firebase
-
+        Firebase.setAndroidContext(MainActivity.this);
+        firebase = new Firebase(FIREBASEURL);
+        databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
 
         //edittext
         trainingid=(EditText)findViewById(R.id.trainingid);
@@ -43,7 +53,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnsave.setOnClickListener(this);
 
     }
+    public void GetDataFromEditText(){
+
+        strainingid = trainingid.getText().toString();
+        strainingname = trainingname.getText().toString();
+        scontact = contact.getText().toString();
+        swebsite = website.getText().toString();
+
+    }
     public void onClick(View v){
+        TrainingDetails trainingdetails = new TrainingDetails();
+
+        GetDataFromEditText();
+
+        // Adding name into class function object.
+        //trainingdetails.setTrainingid(strainingid);
+        trainingdetails.setTrainingname(strainingname);
+        trainingdetails.setWebsite(swebsite);
+        trainingdetails.setContact(scontact);
+
+        // Adding the both name and number values using TrainingDetails class object using ID.
+        databaseReference.child(strainingid).setValue(trainingdetails);
+
+        // Showing Toast message after successfully data submit.
+        Toast.makeText(MainActivity.this,"Data Inserted Successfully into Firebase Database", Toast.LENGTH_LONG).show();
 
     }
 

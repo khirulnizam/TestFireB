@@ -1,18 +1,21 @@
 package my.edu.kuis.fstm.testfireb;
+// fullcode at
+// https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/TrainingDetails.java
 
 public class TrainingDetails {
-    private String trainingID, trainingname, contact, website;
+    private String trainingname, contact, website;
 
     public TrainingDetails(){
         //constructor
     }
-
-    public void setTrainingID(String trainingID){
-        this.trainingID=trainingID;
+    /*
+    public void setTrainingid(String trainingid){
+        this.trainingid=trainingid;
     }
-    public String getTrainingID(){
-        return trainingID;
+    public String getTrainingid(){
+        return trainingid;
     }
+    */
     public void setTrainingname(String trainingname){
         this.trainingname=trainingname;
     }
