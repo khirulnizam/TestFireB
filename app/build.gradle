@@ -31,6 +31,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:16.0.1'
     compile 'com.firebase:firebase-client-android:2.5.2'
     // /add those three firebase APIs to the project by compiling the libaries
+    implementation 'com.android.support:recyclerview-v7:27.0.1'
 }
 
 //apply firebase JSON services

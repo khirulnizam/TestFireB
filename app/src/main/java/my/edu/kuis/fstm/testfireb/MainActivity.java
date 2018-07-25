@@ -2,6 +2,7 @@
 // https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/MainActivity.java
 package my.edu.kuis.fstm.testfireb;
 
+import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button btnsave;
+    private Button btnsave,btnview;
     private EditText trainingid, trainingname, contact, website;
 
     //String to store data from EditText
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //button
         btnsave=(Button)findViewById(R.id.btnsave);
         btnsave.setOnClickListener(this);
+        btnview=(Button)findViewById(R.id.btnview);
+        btnview.setOnClickListener(this);
 
     }//end onCreate
 
@@ -61,22 +64,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }//end GetDataFromEditText
 
     public void onClick(View v){
-        TrainingDetails trainingdetails = new TrainingDetails();
-        GetDataFromEditText();
+        if (v.getId()==R.id.btnsave) {//user press save record button
+            TrainingDetails trainingdetails = new TrainingDetails();
+            GetDataFromEditText();
 
-        // Adding name into class function object.
-        //trainingdetails.setTrainingid(strainingid);
-        trainingdetails.setTrainingname(strainingname);
-        trainingdetails.setWebsite(swebsite);
-        trainingdetails.setContact(scontact);
+            // Adding name into class function object.
+            //trainingdetails.setTrainingid(strainingid);
+            trainingdetails.setTrainingname(strainingname);
+            trainingdetails.setWebsite(swebsite);
+            trainingdetails.setContact(scontact);
 
-        // Adding the both name and number values using TrainingDetails class object using ID.
-        databaseReference.child(strainingid).setValue(trainingdetails);
+            // Adding the both name and number values using TrainingDetails class object using ID.
+            databaseReference.child(strainingid).setValue(trainingdetails);
 
-        // Showing Toast message after successfully data submit.
-        Toast.makeText(MainActivity.this,
-                "Data Inserted Successfully into Firebase Database",
-                Toast.LENGTH_LONG).show();
+            // Showing Toast message after successfully data submit.
+            Toast.makeText(MainActivity.this,
+                    "Data Inserted Successfully into Firebase Database",
+                    Toast.LENGTH_LONG).show();
+        }
+        else if (v.getId()==R.id.btnview){
+            Intent i=new Intent(this,Listing.class);
+            startActivity(i);
+        }
     }//end ooClick
 
 }//end main class
