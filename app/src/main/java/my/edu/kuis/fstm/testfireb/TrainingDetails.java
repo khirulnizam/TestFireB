@@ -8,14 +8,6 @@ public class TrainingDetails {
     public TrainingDetails(){
         //constructor
     }
-    /*
-    public void setTrainingid(String trainingid){
-        this.trainingid=trainingid;
-    }
-    public String getTrainingid(){
-        return trainingid;
-    }
-    */
     public void setTrainingname(String trainingname){
         this.trainingname=trainingname;
     }

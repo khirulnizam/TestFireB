@@ -16,21 +16,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    // Declaring String variable ( In which we are storing firebase server URL ).
-    public static final String FIREBASEURL = "https://test-fstm.firebaseio.com/";
-    // Declaring Firebase object.
-    Firebase firebase;
-    DatabaseReference databaseReference;
-    public static final String Database_Path = "trainings";
-
     private Button btnsave;
     private EditText trainingid, trainingname, contact, website;
 
     //String to store data from EditText
     private String strainingid, strainingname, scontact, swebsite;
+
+    // Declaring String variable ( In which we are storing firebase server URL ).
+    public static final String FIREBASEURL = "https://test-fstm.firebaseio.com/";
+    public static final String Database_Path = "trainings";
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
-
-
+    // Declaring Firebase object.
+    Firebase firebase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebase = new Firebase(FIREBASEURL);
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
 
-        //edittext
+        //edittexts
         trainingid=(EditText)findViewById(R.id.trainingid);
         trainingname=(EditText)findViewById(R.id.trainingname);
         contact=(EditText)findViewById(R.id.contact);
@@ -52,18 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnsave=(Button)findViewById(R.id.btnsave);
         btnsave.setOnClickListener(this);
 
-    }
+    }//end onCreate
+
     public void GetDataFromEditText(){
 
         strainingid = trainingid.getText().toString();
         strainingname = trainingname.getText().toString();
         scontact = contact.getText().toString();
         swebsite = website.getText().toString();
+    }//end GetDataFromEditText
 
-    }
     public void onClick(View v){
         TrainingDetails trainingdetails = new TrainingDetails();
-
         GetDataFromEditText();
 
         // Adding name into class function object.
@@ -76,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseReference.child(strainingid).setValue(trainingdetails);
 
         // Showing Toast message after successfully data submit.
-        Toast.makeText(MainActivity.this,"Data Inserted Successfully into Firebase Database", Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this,
+                "Data Inserted Successfully into Firebase Database",
+                Toast.LENGTH_LONG).show();
+    }//end ooClick
 
-    }
-
-}
+}//end main class
