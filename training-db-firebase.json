@@ -1,0 +1,19 @@
+{
+"trainings":{
+	"A2":{
+		"trainingname":"Android Studio 2 days",
+		"website":"http:\/\/bit.ly\/androidjsk",
+		"contact":"+60129034614"
+	},
+	"P4":{
+		"trainingname":"PHP & MySQL Basics to Intermediate 4 days",
+		"website":"http:\/\/bit.ly\/phpfstm",
+		"contact":"+60129034614"
+	},
+	"W3":{
+		"trainingname":"Joomla! Basics to Intermediate 3 days",
+		"website":"http:\/\/bit.ly\/joomlamy",
+		"contact":"+60129034614"
+	}
+  }
+}
