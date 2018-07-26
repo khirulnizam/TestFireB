@@ -1,3 +1,5 @@
+// full code at
+// https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/Listing.java
 package my.edu.kuis.fstm.testfireb;
 
 import android.app.ProgressDialog;
@@ -19,66 +21,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Listing extends AppCompatActivity {
-    // Declaring String variable ( In which we are storing firebase server URL ).
-        //public static final String FIREBASEURL = "https://test-fstm.firebaseio.com/";
-        //public static final String Database_Path = "trainings";
-        //private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
-        // Declaring Firebase object.
-        //Firebase firebase;
-        DatabaseReference databaseReference;
-        ProgressDialog progressDialog;
-        List<TrainingDetails> list = new ArrayList<>();
+    DatabaseReference databaseReference;
+    ProgressDialog progressDialog;
 
-        RecyclerView recyclerView;
+    //the trainings arraylist
+    List<TrainingDetails> list = new ArrayList<>();
 
-        RecyclerView.Adapter adapter ;
+    //record display containers
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter ;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_listing);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_listing);
 
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        //recyclerview container settings
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Listing.this));
 
-            recyclerView.setHasFixedSize(true);
+        //setting for the progress dialog box and ON
+        progressDialog = new ProgressDialog(Listing.this);
+        progressDialog.setMessage("Loading Data from Firebase Database");
+        progressDialog.show();
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(Listing.this));
+        //connect to the database trainings
+        databaseReference = FirebaseDatabase.getInstance().getReference(MainActivity.Database_Path);
 
-            progressDialog = new ProgressDialog(Listing.this);
-
-            progressDialog.setMessage("Loading Data from Firebase Database");
-
-            progressDialog.show();
-            //Firebase
-            //Firebase.setAndroidContext(Listing.this);
-            //firebase = new Firebase(FIREBASEURL);
-
-            databaseReference = FirebaseDatabase.getInstance().getReference(MainActivity.Database_Path);
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Log.i("list","Creating record");
-
-                        TrainingDetails trainingdetails = dataSnapshot.getValue(TrainingDetails.class);
-                        list.add(trainingdetails);
-                    }
-
-                    adapter = new RecyclerViewAdapter(Listing.this, list);
-                    recyclerView.setAdapter(adapter);
-                    progressDialog.dismiss();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //for each record, do these
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    //Log.i("list","Creating record");
+                    TrainingDetails trainingdetails = dataSnapshot.getValue(TrainingDetails.class);
+                    list.add(trainingdetails);
                 }
+                adapter = new RecyclerViewAdapter(Listing.this, list);
+                recyclerView.setAdapter(adapter);
+                //finish populating records and dismis progress dialog
+                progressDialog.dismiss();
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.i("DBError ",databaseError.toString());
-                    //Toast.makeText(getApplicationContext(),databaseError.toString(),Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
-
-                }
-            });
-
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //if database has error(s)
+                Log.i("DBError ",databaseError.toString());
+                //Toast.makeText(getApplicationContext(),
+                // databaseError.toString(),Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+            }
+        });
     }
+}//end class Listing
+
+
+
+
+
+
+
+
+
+

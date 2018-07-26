@@ -1,6 +1,6 @@
+// full code at
+// https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/RecyclerViewAdapter.java
 package my.edu.kuis.fstm.testfireb;
-//code is available from GITHUB
-//
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,26 +18,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewAdapter(Context context, List<TrainingDetails> TempList) {
 
         this.MainImageUploadInfoList = TempList;
-
         this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewitems, parent, false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewitems,
+                parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        //from TrainingDetails class
         TrainingDetails trainingdetails = MainImageUploadInfoList.get(position);
 
-        //holder.trainingid.setText(trainingdetails.getTrainingid());
+        //this lines generate one record display
         holder.trainingname.setText("Name    : "+trainingdetails.getTrainingname());
              holder.website.setText("Phone   : "+trainingdetails.getContact());
              holder.contact.setText("Website: "+trainingdetails.getWebsite());
@@ -46,7 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-
         return MainImageUploadInfoList.size();
     }
 
@@ -58,10 +56,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             super(itemView);
 
-            //trainingid = (TextView) itemView.findViewById(R.id.trainingid);
-            trainingname = (TextView) itemView.findViewById(R.id.trainingname);
-            contact = (TextView) itemView.findViewById(R.id.contact);
-            website = (TextView) itemView.findViewById(R.id.website);
+            //trainingid = (TextView)itemView.findViewById(R.id.trainingid);
+            trainingname = (TextView)itemView.findViewById(R.id.trainingname);
+            contact = (TextView)itemView.findViewById(R.id.contact);
+            website = (TextView)itemView.findViewById(R.id.website);
         }
-    }
+    }//end ViewHolder
 }//end RecyclerViewAdapter
