@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             website.setText("http://");
             trainingname.setText("");
             trainingid.setText("");
+            trainingid.requestFocus();
         }
         else if (v.getId()==R.id.btnview){
             Intent i=new Intent(this,Listing.class);
