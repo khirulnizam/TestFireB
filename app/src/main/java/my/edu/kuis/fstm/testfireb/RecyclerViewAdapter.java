@@ -37,10 +37,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TrainingDetails trainingdetails = MainImageUploadInfoList.get(position);
 
         //holder.trainingid.setText(trainingdetails.getTrainingid());
-        holder.trainingname.setText(trainingdetails.getTrainingname());
-        holder.contact.setText(trainingdetails.getWebsite());
-        holder.website.setText(trainingdetails.getContact());
-
+        holder.trainingname.setText("Name    : "+trainingdetails.getTrainingname());
+             holder.website.setText("Phone   : "+trainingdetails.getContact());
+             holder.contact.setText("Website: "+trainingdetails.getWebsite());
 
     }
 

@@ -67,9 +67,7 @@ public class Listing extends AppCompatActivity {
                     }
 
                     adapter = new RecyclerViewAdapter(Listing.this, list);
-
                     recyclerView.setAdapter(adapter);
-
                     progressDialog.dismiss();
                 }
 
