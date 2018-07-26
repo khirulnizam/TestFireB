@@ -2,8 +2,10 @@
 // https://github.com/khirulnizam/TestFireB/blob/master/app/src/main/java/my/edu/kuis/fstm/testfireb/MainActivity.java
 package my.edu.kuis.fstm.testfireb;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -78,9 +80,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             databaseReference.child(strainingid).setValue(trainingdetails);
 
             // Showing Toast message after successfully data submit.
-            Toast.makeText(MainActivity.this,
-                    "Data Inserted Successfully into Firebase Database",
-                    Toast.LENGTH_LONG).show();
+            //**********common dialog box
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle("Saving record...");
+            builder1.setMessage("Record for "+strainingname+" saved");
+            builder1.setCancelable(false);
+            builder1.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            }).create().show();
+            contact.setText("");
+            website.setText("http://");
+            trainingname.setText("");
+            trainingid.setText("");
         }
         else if (v.getId()==R.id.btnview){
             Intent i=new Intent(this,Listing.class);
