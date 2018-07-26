@@ -1,5 +1,6 @@
 package my.edu.kuis.fstm.testfireb;
-
+//code is available from GITHUB
+//
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
